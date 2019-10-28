@@ -1,4 +1,4 @@
-﻿# Javafaktura s02e03 - Unit testing
+﻿# Javafaktura s02e03 - Spring MVC - Peace in REST vs REST in peace
 
 ![.images/javafaktura.png](.images/javafaktura.png)
 
