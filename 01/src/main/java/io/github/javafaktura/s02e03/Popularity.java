@@ -1,6 +1,6 @@
 package io.github.javafaktura.s02e03;
 
-public enum Popularity {
+enum Popularity {
     MOST_POPULAR(500, Integer.MAX_VALUE),
     POPULAR(100, 499),
     UNIQUE(10, 99),

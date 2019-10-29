@@ -12,15 +12,14 @@ public class ChildNameChooserTest {
 
     private ChildNameChooser childNameChooser = new ChildNameChooser(new ChildNameProviderFromCSV(CHILD_NAMES));
 
-
     @Test
     @ParameterizedTest(name = "For given gender = {0} and popularity = {1} should return child name = {2}")
     @CsvSource({
             "MALE,     MOST_POPULAR,    ANTONI",
-            "MALE,     VERY_RARE,       BEN"
+            "MALE,     VERY_RARE,       BEN",
+            "FEMALE,   POPULAR,         KAMILA",
     })
-    void firstLoadedChildShouldBeAntoni(Gender gender, Popularity popularity, String expectedName) {
-
+    void forGIvenGenderAndPopularityShouldReturnGivenName(Gender gender, Popularity popularity, String expectedName) {
         assertEquals(expectedName, childNameChooser.getRandom(gender, popularity).get());
     }
 }

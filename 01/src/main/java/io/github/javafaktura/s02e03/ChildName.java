@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class ChildName {
     private String name;
-    private int occurences;
+    private int occurrences;
     private Gender gender;
 
-    public ChildName(String name, int occurences, Gender gender) {
+    public ChildName(String name, int occurrences, Gender gender) {
         this.name = name;
-        this.occurences = occurences;
+        this.occurrences = occurrences;
         this.gender = gender;
     }
 
@@ -17,8 +17,8 @@ public class ChildName {
         return name;
     }
 
-    public int getOccurences() {
-        return occurences;
+    public int getOccurrences() {
+        return occurrences;
     }
 
     public Gender getGender() {
@@ -30,21 +30,21 @@ public class ChildName {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChildName childName = (ChildName) o;
-        return occurences == childName.occurences &&
+        return occurrences == childName.occurrences &&
                 Objects.equals(name, childName.name) &&
                 gender == childName.gender;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, occurences, gender);
+        return Objects.hash(name, occurrences, gender);
     }
 
     @Override
     public String toString() {
         return "ChildName{" +
                 "name='" + name + '\'' +
-                ", minimalOccurences=" + occurences +
+                ", minimalOccurences=" + occurrences +
                 ", gender=" + gender +
                 '}';
     }

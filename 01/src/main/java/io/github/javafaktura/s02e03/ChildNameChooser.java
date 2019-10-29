@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ChildNameChooser {
-
     private final ChildNameProvider childNameProvider;
 
     public ChildNameChooser(ChildNameProvider childNameProvider) {
@@ -14,24 +13,22 @@ public class ChildNameChooser {
     }
 
     public Optional<String> getRandom(Gender gender, Popularity popularity) {
-
         List<ChildName> fullList = childNameProvider.load();
-
-        List<ChildName> filtered = fullList
-                .stream()
-                .filter(c -> c.getGender() == gender)
-                .filter(c -> c.getOccurences() > popularity.minOccurences)
-                .filter(c -> c.getOccurences() < popularity.maxOccurences)
-                .collect(Collectors.toList());
-
+        List<ChildName> filtered = filter(fullList, gender, popularity);
         Collections.shuffle(filtered);
-
         if(filtered.isEmpty()) {
             return Optional.empty();
         } else {
             return Optional.of(filtered.get(0).getName());
         }
+    }
 
-
+    private List<ChildName> filter(List<ChildName> fullList, Gender gender, Popularity popularity) {
+        return fullList
+                .stream()
+                .filter(c -> c.getGender() == gender)
+                .filter(c -> c.getOccurrences() > popularity.minOccurences)
+                .filter(c -> c.getOccurrences() < popularity.maxOccurences)
+                .collect(Collectors.toList());
     }
 }
