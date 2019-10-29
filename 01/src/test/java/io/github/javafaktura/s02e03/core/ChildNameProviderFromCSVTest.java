@@ -1,4 +1,4 @@
-package io.github.javafaktura.s02e03;
+package io.github.javafaktura.s02e03.core;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,5 @@
-package io.github.javafaktura.s02e03;
+package io.github.javafaktura.s02e03.core;
+
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

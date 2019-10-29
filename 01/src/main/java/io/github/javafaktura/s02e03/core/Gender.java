@@ -1,6 +1,6 @@
-package io.github.javafaktura.s02e03;
+package io.github.javafaktura.s02e03.core;
 
-enum Gender {
+public enum Gender {
     MALE,FEMALE;
 
     public static Gender fromSymbol(String symbol) {

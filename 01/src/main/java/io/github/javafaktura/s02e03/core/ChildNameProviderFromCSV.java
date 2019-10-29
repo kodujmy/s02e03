@@ -1,8 +1,10 @@
-package io.github.javafaktura.s02e03;
+package io.github.javafaktura.s02e03.core;
 
 import com.opencsv.CSVReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,11 +12,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 class ChildNameProviderFromCSV implements ChildNameProvider{
     private final Logger logger = LoggerFactory.getLogger(ChildNameProviderFromCSV.class);
     private final String path;
 
-    public ChildNameProviderFromCSV(String path) {
+    public ChildNameProviderFromCSV(@Value("${csv.name}")String path) {
         this.path = path;
     }
 
