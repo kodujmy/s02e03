@@ -2,7 +2,7 @@ package io.github.javafaktura.s02e03;
 
 import java.util.Objects;
 
-class ChildName {
+public class ChildName {
     private String name;
     private int occurences;
     private Gender gender;
