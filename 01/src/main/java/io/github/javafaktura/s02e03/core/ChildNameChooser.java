@@ -18,6 +18,13 @@ public class ChildNameChooser {
         return fullList.get(0).getName();
     }
 
+    public String getRandom(Gender gender) {
+        List<ChildName> fullList = childNameProvider.load();
+        Collections.shuffle(fullList);
+        List<ChildName> filtered = filter(fullList, gender);
+        return fullList.get(0).getName();
+    }
+
     public String getRandom(Gender gender, Popularity popularity) {
         List<ChildName> fullList = childNameProvider.load();
         List<ChildName> filtered = filter(fullList, gender, popularity);
@@ -32,6 +39,13 @@ public class ChildNameChooser {
                 .filter(c -> c.getGender() == gender)
                 .filter(c -> c.getOccurrences() > popularity.minOccurences)
                 .filter(c -> c.getOccurrences() < popularity.maxOccurences)
+                .collect(Collectors.toList());
+    }
+
+    private List<ChildName> filter(List<ChildName> fullList, Gender gender) {
+        return fullList
+                .stream()
+                .filter(c -> c.getGender() == gender)
                 .collect(Collectors.toList());
     }
 }
