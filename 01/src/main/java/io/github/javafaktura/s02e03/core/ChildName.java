@@ -13,6 +13,10 @@ public class ChildName {
         this.gender = gender;
     }
 
+    public void incrementOccurrences() {
+        this.occurrences++;
+    }
+
     public String getName() {
         return name;
     }

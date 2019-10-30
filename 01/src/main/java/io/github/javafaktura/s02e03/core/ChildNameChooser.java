@@ -13,6 +13,22 @@ public class ChildNameChooser {
         this.storage = childNameProvider.load();
     }
 
+    public List<ChildName> getAll() {
+        return storage;
+    }
+
+    public ChildName add(String name) {
+        for (ChildName childName : storage) {
+            if(childName.getName().equalsIgnoreCase(name)) {
+                childName.incrementOccurrences();
+                return childName;
+            }
+        }
+        ChildName newName = new ChildName(name.toUpperCase(), 1, name.toUpperCase().endsWith("A") ? Gender.FEMALE : Gender.MALE);
+        storage.add(newName);
+        return newName;
+    }
+
     public String getRandom() {
         return getShuffledCopy(storage).get(0).getName();
     }

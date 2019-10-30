@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Baby name chooser</title>
+</head>
+
+<body style="background-color: #FFE1B0">
+    <img style=" display: block;margin-left: auto;margin-right: auto;width: 30%;" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
+    <table>
+        <tr>
+            <th>Imię</th>
+            <th>Tylu rodziców wybrało to imię w 2019</th>
+            <th>Płeć</th>
+        </tr>
+        <tr th:each="name : ${names}">
+            <td th:text="${name.name}"></td>
+            <td th:text="${name.occurrences}"></td>
+            <td th:text="${name.gender}"></td>
+        </tr>
+    </table>
+</body>
+</html>

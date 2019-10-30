@@ -19,4 +19,10 @@ public class ChildNameController {
         model.addAttribute("name", chooser.getRandom());
         return "index";
     }
+
+    @RequestMapping("/all")
+    public String all(Model model) {
+        model.addAttribute("names", chooser.getAll());
+        return "all";
+    }
 }
