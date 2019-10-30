@@ -1,7 +1,7 @@
 ## 01 Spring MVC + Thymeleaf
 
 [x] simplest index routing
-[] memory based storage after startup based on init from csv
+[x] memory based storage after startup based on init from csv
 [] param routing
 [] conditional param routing
 [] adding new names
