@@ -16,13 +16,14 @@ public class ChildNameController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("name", chooser.getRandom());
+        model.addAttribute("child", chooser.getRandom());
         return "index";
     }
 
     @RequestMapping("/all")
     public String all(Model model) {
-        model.addAttribute("names", chooser.getAll());
+        model.addAttribute("boys",  chooser.getAll(new ChildNameParentPreferences(Gender.MALE)));
+        model.addAttribute("girls", chooser.getAll(new ChildNameParentPreferences(Gender.FEMALE)));
         return "all";
     }
 }

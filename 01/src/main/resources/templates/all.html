@@ -3,23 +3,39 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/w3.css}" />
     <title>Baby name chooser</title>
 </head>
 
 <body style="background-color: #FFE1B0">
-    <img style=" display: block;margin-left: auto;margin-right: auto;width: 30%;" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
-    <table>
-        <tr>
-            <th>Imię</th>
-            <th>Tylu rodziców wybrało to imię w 2019</th>
-            <th>Płeć</th>
-        </tr>
-        <tr th:each="name : ${names}">
-            <td th:text="${name.name}"></td>
-            <td th:text="${name.occurrences}"></td>
-            <td th:text="${name.gender}"></td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="column">
+            <img class="img" src="../static/images/boy.png" width="50" th:src="@{images/boy.png}" />
+            <table class="w3-table-all w3-centered">
+                <tr class="w3-childheader">
+                    <th>Imię</th>
+                    <th>Wybór pierwszej połowy 2019</th>
+                </tr>
+                <tr class="w3-hover-orange w3-childbackground" th:each="name : ${boys}">
+                    <td th:text="${name.name}"></td>
+                    <td th:text="${name.occurrences}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="column">
+            <img class="img" src="../static/images/girl.png" width="50" th:src="@{images/girl.png}" />
+            <table class="w3-table-all w3-centered">
+                <tr class="w3-childheader">
+                    <th>Imię</th>
+                    <th>Wybór pierwszej połowy 2019</th>
+                </tr>
+                <tr class="w3-hover-orange w3-childbackground" th:each="name : ${girls}">
+                    <td th:text="${name.name}"></td>
+                    <td th:text="${name.occurrences}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

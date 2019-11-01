@@ -3,6 +3,7 @@ package io.github.javafaktura.s02e03.core;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -17,6 +18,14 @@ public class ChildNameChooser {
         return storage;
     }
 
+    public List<ChildName> getAll(ChildNameParentPreferences preferences) {
+        return filter(storage, preferences.asPredicates());
+    }
+
+    public int countAll() {
+        return storage.size();
+    }
+
     public ChildName add(String name) {
         for (ChildName childName : storage) {
             if(childName.getName().equalsIgnoreCase(name)) {
@@ -29,34 +38,19 @@ public class ChildNameChooser {
         return newName;
     }
 
-    public String getRandom() {
-        return getShuffledCopy(storage).get(0).getName();
+    public ChildName getRandom() {
+        return getShuffledCopy(storage).get(0);
     }
 
-    public String getRandom(Gender gender) {
-        List<ChildName> filtered = filter(getShuffledCopy(storage), gender);
-        return filtered.get(0).getName();
+    public ChildName getRandom(ChildNameParentPreferences preferences) {
+        List<ChildName> filtered = filter(getShuffledCopy(storage), preferences.asPredicates());
+        return filtered.get(0);
     }
 
-    public String getRandom(Gender gender, Popularity popularity) {
-        List<ChildName> filtered = filter(getShuffledCopy(storage), gender, popularity);
-        return filtered.get(0).getName();
-    }
-
-
-    private List<ChildName> filter(List<ChildName> fullList, Gender gender, Popularity popularity) {
+    private List<ChildName> filter(List<ChildName> fullList, List<Predicate<ChildName>> predicates) {
         return fullList
                 .stream()
-                .filter(c -> c.getGender() == gender)
-                .filter(c -> c.getOccurrences() > popularity.minOccurences)
-                .filter(c -> c.getOccurrences() < popularity.maxOccurences)
-                .collect(Collectors.toList());
-    }
-
-    private List<ChildName> filter(List<ChildName> fullList, Gender gender) {
-        return fullList
-                .stream()
-                .filter(c -> c.getGender() == gender)
+                .filter(predicates.stream().reduce(x -> true, Predicate::and))
                 .collect(Collectors.toList());
     }
 

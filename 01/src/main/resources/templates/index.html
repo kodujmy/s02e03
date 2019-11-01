@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
     <title>Baby name chooser</title>
 </head>
 
 <body style="background-color: #FFE1B0">
-    <h1 style="text-align:center;font: normal normal bold 123px/1.4em 'noticia text',serif; color: #E36C0C;" th:text="${name}"></h1>
-    <img style=" display: block;margin-left: auto;margin-right: auto;width: 30%;" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
+    <h1 class="header" th:text="${child.name}"></h1>
+    <p class="description">Wybór <b th:text="${child.occurrences}" /> rodzin w pierwszej połowie 2019 roku</p>
+    <img class="img" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
 </body>
 </html>

@@ -10,7 +10,7 @@ class ChildNameChooserSpec extends Specification {
     @Unroll
     def "When gender is #gender and popularity is #popularity should return name #name "() {
         expect:
-            name == childNameChooser.getRandom(gender, popularity)
+            name == childNameChooser.getRandom(new ChildNameParentPreferences(gender, popularity)).name
         where:
             gender        | popularity                || name
             Gender.MALE   | Popularity.MOST_POPULAR   || "ANTONI"
