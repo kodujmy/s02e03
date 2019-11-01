@@ -1,7 +1,21 @@
 package io.github.javafaktura.s02e03.core;
 
 public enum Gender {
-    MALE,FEMALE;
+    MALE("chłopiec"),FEMALE("dziewczynka");
+
+    public final String label;
+
+    Gender(String label) {
+        this.label = label;
+    }
+
+    public static Gender fromName(String name) {
+        return name.endsWith("A") ? FEMALE : MALE;
+    }
+
+    public String getLabel() {
+        return label;
+    }
 
     public static Gender fromSymbol(String symbol) {
         if(symbol.equals("M")) {

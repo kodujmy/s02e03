@@ -28,7 +28,7 @@ public class ChildNameChooser {
 
     public ChildName add(String name) {
         for (ChildName childName : storage) {
-            if(childName.getName().equalsIgnoreCase(name)) {
+            if (childName.getName().equalsIgnoreCase(name)) {
                 childName.incrementOccurrences();
                 return childName;
             }
@@ -59,5 +59,12 @@ public class ChildNameChooser {
         Collections.copy(destination, source);
         Collections.shuffle(destination);
         return destination;
+    }
+
+    public ChildName lookFor(String name) {
+        return storage.stream()
+                .filter(c -> c.getName().equals(name.toUpperCase()))
+                .findAny()
+                .orElse(new ChildName(name, 0, Gender.fromName(name)));
     }
 }

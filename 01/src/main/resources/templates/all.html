@@ -18,7 +18,7 @@
                     <th>Wybór pierwszej połowy 2019</th>
                 </tr>
                 <tr class="w3-hover-orange w3-childbackground" th:each="name : ${boys}">
-                    <td th:text="${name.name}"></td>
+                    <td><a th:href="@{'/' + ${name.name}}" th:text="${name.name}" /></td>
                     <td th:text="${name.occurrences}"></td>
                 </tr>
             </table>
@@ -31,7 +31,7 @@
                     <th>Wybór pierwszej połowy 2019</th>
                 </tr>
                 <tr class="w3-hover-orange w3-childbackground" th:each="name : ${girls}">
-                    <td th:text="${name.name}"></td>
+                    <td><a th:href="@{'/' + ${name.name}}" th:text="${name.name}" /></td>
                     <td th:text="${name.occurrences}"></td>
                 </tr>
             </table>

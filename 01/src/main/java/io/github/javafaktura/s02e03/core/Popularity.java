@@ -1,17 +1,31 @@
 package io.github.javafaktura.s02e03.core;
 
 public enum Popularity {
-    MOST_POPULAR(500, Integer.MAX_VALUE),
-    POPULAR(100, 499),
-    UNIQUE(10, 99),
-    VERY_RARE(0, 9);
+    MOST_POPULAR(500, Integer.MAX_VALUE, "Najpopularniejsze"),
+    POPULAR(100, 499, "Popularne"),
+    UNIQUE(10, 99, "Unikalne"),
+    VERY_RARE(0, 9, "Bardzo rzadkie");
 
-    final int minOccurences;
-    final int maxOccurences;
+    private final int minOccurences;
+    private final int maxOccurences;
+    private final String label;
 
 
-    Popularity(int minOccurences, int maxOccurences) {
+    Popularity(int minOccurences, int maxOccurences, String label) {
         this.minOccurences = minOccurences;
         this.maxOccurences = maxOccurences;
+        this.label = label;
+    }
+
+    public int getMinOccurences() {
+        return minOccurences;
+    }
+
+    public int getMaxOccurences() {
+        return maxOccurences;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

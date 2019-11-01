@@ -17,8 +17,8 @@ public class ChildNameParentPreferences {
             predicates.add(c -> c.getGender() == gender);
         }
         if (popularity != null) {
-            predicates.add(c -> c.getOccurrences() > popularity.minOccurences);
-            predicates.add(c -> c.getOccurrences() < popularity.maxOccurences);
+            predicates.add(c -> c.getOccurrences() > popularity.getMinOccurences());
+            predicates.add(c -> c.getOccurrences() < popularity.getMaxOccurences());
         }
         return predicates;
     }
