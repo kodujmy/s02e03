@@ -1,4 +1,4 @@
-package io.github.javafaktura.s02e03.child.web;
+package io.github.javafaktura.s02e03.child.client.web;
 
 import io.github.javafaktura.s02e03.child.core.service.ChildNameMemoryService;
 import io.github.javafaktura.s02e03.child.core.provider.ChildNameStatsCsvStatsProvider;
