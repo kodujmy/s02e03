@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class ChildNameController {
 
-    private final ChildNameMemoryService chooser;
+    private final ChildNameMemoryService childNameService;
 
     public ChildNameController(ChildNameMemoryService childNameChooser) {
-        this.chooser = childNameChooser;
+        this.childNameService = childNameChooser;
     }
 
     @RequestMapping("/")
     public String index(@RequestParam(required = false) Gender gender,
                         @RequestParam(required = false) Popularity popularity,
                         Model model) {
-        ChildNameStats randomChildNameStats = chooser.getRandom(new ParentPreferences(gender, popularity));
+        ChildNameStats randomChildNameStats = childNameService.getRandom(new ParentPreferences(gender, popularity));
         model.addAttribute("child", randomChildNameStats);
         model.addAttribute("choice", new ParentChoice(randomChildNameStats.getName()));
         return "index";
@@ -27,7 +27,7 @@ public class ChildNameController {
 
     @RequestMapping(value = "/{name}")
     public String name(@PathVariable String name, Model model) {
-        ChildNameStats childNameStats = chooser.lookFor(name.toUpperCase());
+        ChildNameStats childNameStats = childNameService.lookFor(name.toUpperCase());
         model.addAttribute("child", childNameStats);
         model.addAttribute("choice", new ParentChoice(name.toUpperCase()));
         return "index";
@@ -35,14 +35,14 @@ public class ChildNameController {
 
     @RequestMapping("/all")
     public String all(Model model) {
-        model.addAttribute("boys",  chooser.getAll(new ParentPreferences(Gender.MALE)));
-        model.addAttribute("girls", chooser.getAll(new ParentPreferences(Gender.FEMALE)));
+        model.addAttribute("boys",  childNameService.getAll(new ParentPreferences(Gender.MALE)));
+        model.addAttribute("girls", childNameService.getAll(new ParentPreferences(Gender.FEMALE)));
         return "all";
     }
 
     @RequestMapping(value = "/choose", method = RequestMethod.POST)
     public String choose(@ModelAttribute ParentChoice choice) {
-        chooser.add(choice.getName().toUpperCase());
+        childNameService.add(choice.getName().toUpperCase());
         return "redirect:/all";
     }
 

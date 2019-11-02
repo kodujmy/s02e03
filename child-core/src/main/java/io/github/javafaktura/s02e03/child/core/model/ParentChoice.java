@@ -9,8 +9,15 @@ public class ParentChoice {
         this.name = name;
     }
 
+    public ParentChoice() {
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

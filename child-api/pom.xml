@@ -7,24 +7,15 @@
         <artifactId>s02e03</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>child-webapp</artifactId>
-    <name>child-webapp</name>
+    <artifactId>child-api</artifactId>
+    <name>child-api</name>
 
     <dependencies>
         <dependency>
             <groupId>io.github.javafaktura</groupId>
             <artifactId>child-core</artifactId>
-            <scope>compile</scope>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ChildNameApplication {
+public class ChildNameWebappApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ChildNameApplication.class, args);
+        SpringApplication.run(ChildNameWebappApplication.class, args);
     }
 
     @Bean
