@@ -9,6 +9,7 @@
     </parent>
     <artifactId>child-core</artifactId>
     <name>child-core</name>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
