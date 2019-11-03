@@ -7,6 +7,13 @@
     <packaging>pom</packaging>
     <name>s02e03</name>
 
+    <modules>
+        <module>child-core</module>
+        <module>child-webapp</module>
+        <module>child-api</module>
+        <module>child-client</module>
+    </modules>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

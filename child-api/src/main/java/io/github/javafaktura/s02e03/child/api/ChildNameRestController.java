@@ -2,6 +2,7 @@ package io.github.javafaktura.s02e03.child.api;
 
 import io.github.javafaktura.s02e03.child.core.model.*;
 import io.github.javafaktura.s02e03.child.core.service.ChildNameMemoryService;
+import io.github.javafaktura.s02e03.child.core.service.ChildNameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,9 @@ import java.util.List;
 @RestController
 public class ChildNameRestController {
 
-    private final ChildNameMemoryService childNameService;
+    private final ChildNameService childNameService;
 
-    public ChildNameRestController(ChildNameMemoryService childNameService) {
+    public ChildNameRestController(ChildNameService childNameService) {
         this.childNameService = childNameService;
     }
 

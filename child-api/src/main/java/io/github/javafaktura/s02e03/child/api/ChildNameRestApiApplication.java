@@ -2,6 +2,7 @@ package io.github.javafaktura.s02e03.child.api;
 
 import io.github.javafaktura.s02e03.child.core.service.ChildNameMemoryService;
 import io.github.javafaktura.s02e03.child.core.provider.ChildNameStatsCsvStatsProvider;
+import io.github.javafaktura.s02e03.child.core.service.ChildNameService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ public class ChildNameRestApiApplication {
     }
 
     @Bean
-    public ChildNameMemoryService getChildNameService(@Value("${csv.name}") String csvName) {
+    public ChildNameService getChildNameService(@Value("${csv.name}") String csvName) {
         return new ChildNameMemoryService(new ChildNameStatsCsvStatsProvider(getPathToFile(csvName)));
     }
 
