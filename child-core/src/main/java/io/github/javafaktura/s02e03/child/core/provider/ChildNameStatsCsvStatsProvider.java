@@ -5,10 +5,12 @@ import io.github.javafaktura.s02e03.child.core.model.ChildNameStats;
 import io.github.javafaktura.s02e03.child.core.model.Gender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +25,13 @@ public class ChildNameStatsCsvStatsProvider implements ChildNameStatsProvider {
 
     @Override
     public List<ChildNameStats> load() {
+
+
+        Resource input = new ClassPathResource(path);
+//        InputStream in = input.getInputStream();
+
         List<ChildNameStats> records = new ArrayList<ChildNameStats>();
-        try (CSVReader csvReader = new CSVReader(new FileReader(path), ',', '"', 1)) {
+        try (CSVReader csvReader = new CSVReader(new InputStreamReader(input.getInputStream()), ',', '"', 1)) {
             String[] values = null;
             while ((values = csvReader.readNext()) != null) {
                 records.add(new ChildNameStats(values[0], Integer.valueOf(values[1]), Gender.fromSymbol(values[2])));

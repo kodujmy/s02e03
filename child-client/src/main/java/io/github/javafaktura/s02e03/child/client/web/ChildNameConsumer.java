@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,9 @@ public class ChildNameConsumer {
 
     public ChildNameStats getRandom(ParentPreferences parentPreferences) {
         return restTemplate.getForObject(
-                childNameServiceApiHost + "/child-names/random", ChildNameStats.class);
+                buildUriWithParams(childNameServiceApiHost + "/child-names/random", parentPreferences),
+                ChildNameStats.class
+        );
     }
 
     public ChildNameStats lookFor(String name) {
@@ -37,7 +40,8 @@ public class ChildNameConsumer {
     }
 
     public List<ChildNameStats> getAll(ParentPreferences parentPreferences) {
-        return Arrays.stream(restTemplate.exchange(childNameServiceApiHost + "/child-names?gender={gender}",
+        return Arrays.stream(restTemplate.exchange(
+                buildUriWithParams(childNameServiceApiHost + "/child-names", parentPreferences),
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
                 ChildNameStats[].class,
@@ -48,6 +52,23 @@ public class ChildNameConsumer {
     public void add(String name) {
         HttpEntity<ParentChoice> request =
                 new HttpEntity<ParentChoice>(new ParentChoice(name), HttpHeaders.EMPTY);
-        ChildNameStats childNameStats = restTemplate.postForObject(childNameServiceApiHost + "/child-names/choose", request, ChildNameStats.class);
+        restTemplate.postForObject(childNameServiceApiHost + "/child-names", request, ChildNameStats.class);
+    }
+
+    private String buildUriWithParams(String uri, ParentPreferences parentPreferences) {
+        if(parentPreferences == null) {
+            return uri;
+        }
+
+        UriComponentsBuilder childNameUriBuilder = UriComponentsBuilder.fromUriString(uri);
+
+        if(parentPreferences.getGender() != null) {
+            childNameUriBuilder.queryParam("gender", parentPreferences.getGender());
+        }
+
+        if(parentPreferences.getPopularity() != null) {
+            childNameUriBuilder.queryParam("popularity", parentPreferences.getPopularity());
+        }
+        return childNameUriBuilder.toUriString();
     }
 }

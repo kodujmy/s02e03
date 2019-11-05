@@ -16,10 +16,6 @@ public class ChildNameRestApiApplication {
 
     @Bean
     public ChildNameService getChildNameService(@Value("${csv.name}") String csvName) {
-        return new ChildNameMemoryService(new ChildNameStatsCsvStatsProvider(getPathToFile(csvName)));
-    }
-
-    private String getPathToFile(String fileName) {
-        return getClass().getClassLoader().getResource(fileName).getPath();
+        return new ChildNameMemoryService(new ChildNameStatsCsvStatsProvider(csvName));
     }
 }

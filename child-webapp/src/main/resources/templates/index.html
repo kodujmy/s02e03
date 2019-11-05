@@ -15,7 +15,7 @@
     <img class="img" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
 
 
-    <form class="w3-container" action="#" th:action="@{/choose}" th:object="${choice}" method="post">
+    <form class="w3-container" action="#" th:action="@{/choice}" th:object="${choice}" method="post">
         <p>Imię <input type="text" class="w3-input" th:field="*{name}" /></p>
         <p><input type="submit" class="w3-btn w3-blue" value="Wybieram!" /></p>
     </form>

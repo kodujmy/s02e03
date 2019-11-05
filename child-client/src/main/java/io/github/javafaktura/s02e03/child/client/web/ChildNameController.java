@@ -39,7 +39,7 @@ public class ChildNameController {
         return "all";
     }
 
-    @RequestMapping(value = "/choose", method = RequestMethod.POST)
+    @RequestMapping(value = "/choice", method = RequestMethod.POST)
     public String choose(@ModelAttribute ParentChoice choice) {
         childNameConsumer.add(choice.getName().toUpperCase());
         return "redirect:/all";
