@@ -1,4 +1,4 @@
-package io.github.javafaktura.s02e03.child.client.web;
+package io.github.javafaktura.s02e03.child.webapp;
 
 import io.github.javafaktura.s02e03.child.client.model.ChildNameStats;
 import io.github.javafaktura.s02e03.child.client.model.ParentChoice;

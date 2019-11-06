@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChildNameStatsCsvStatsProvider implements ChildNameStatsProvider {
-    private final Logger logger = LoggerFactory.getLogger(ChildNameStatsCsvStatsProvider.class);
+public class ChildNameStatsCsvProvider implements ChildNameStatsProvider {
+    private final Logger logger = LoggerFactory.getLogger(ChildNameStatsCsvProvider.class);
     private final String path;
 
-    public ChildNameStatsCsvStatsProvider(String path) {
+    public ChildNameStatsCsvProvider(String path) {
         this.path = path;
     }
 

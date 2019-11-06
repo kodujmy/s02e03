@@ -1,8 +1,8 @@
-package io.github.javafaktura.s02e03.child.core
+package io.github.javafaktura.s02e03.child.core.provider
 
 import io.github.javafaktura.s02e03.child.core.model.ChildNameStats
 import io.github.javafaktura.s02e03.child.core.model.Gender
-import io.github.javafaktura.s02e03.child.core.provider.ChildNameStatsCsvStatsProvider
+import io.github.javafaktura.s02e03.child.core.provider.ChildNameStatsCsvProvider
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -13,7 +13,7 @@ class ChildNameStatsCsvProviderSpec extends Specification {
     @Unroll
     def "When csv is loaded, first record has name ANTONI "() {
         given:
-        ChildNameStatsCsvStatsProvider csvProvider = new ChildNameStatsCsvStatsProvider(CHILD_NAMES);
+        ChildNameStatsCsvProvider csvProvider = new ChildNameStatsCsvProvider(CHILD_NAMES);
         List<ChildNameStats> childNames = csvProvider.load()
         expect:
         new ChildNameStats("ANTONI", 4247, Gender.MALE) == childNames.get(0)
