@@ -1,22 +1,28 @@
 package io.github.javafaktura.s02e03.child.webapp;
 
+import io.github.javafaktura.s02e03.child.client.model.ChildNameHistoricalStats;
 import io.github.javafaktura.s02e03.child.client.model.ChildNameStats;
 import io.github.javafaktura.s02e03.child.client.model.ParentChoice;
 import io.github.javafaktura.s02e03.child.client.model.ParentPreferences;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class ChildNameConsumer {
+    private final Logger logger = LoggerFactory.getLogger(ChildNameConsumer.class);
 
     @Value("${child.name.service.host}")
     private String childNameServiceApiHost;
@@ -37,6 +43,16 @@ public class ChildNameConsumer {
     public ChildNameStats lookFor(String name) {
         return restTemplate.getForObject(
                 childNameServiceApiHost + String.format("/child-names/%s", name), ChildNameStats.class);
+    }
+
+    public Optional<ChildNameHistoricalStats> historicalStats(String name) {
+        try {
+            return Optional.of(restTemplate.getForObject(
+                    childNameServiceApiHost + String.format("/child-names/%s/history", name), ChildNameHistoricalStats.class));
+        } catch (final HttpClientErrorException e) {
+            logger.warn("Couldn't process request. Received : {}, {}", e.getStatusCode(), e.getResponseBodyAsString());
+        }
+        return Optional.empty();
     }
 
     public List<ChildNameStats> getAll(ParentPreferences parentPreferences) {

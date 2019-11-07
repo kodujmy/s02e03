@@ -6,6 +6,7 @@ import io.github.javafaktura.s02e03.child.core.model.ParentPreferences;
 
 import java.time.Year;
 import java.util.List;
+import java.util.Optional;
 
 public interface ChildNameService {
     List<ChildNameStats> getAll(ParentPreferences preferences);
@@ -14,6 +15,6 @@ public interface ChildNameService {
     ChildNameStats getRandom(ParentPreferences preferences);
     ChildNameStats lookFor(String name);
 
-    ChildNameHistoricalStats getHistoricalStats(String name);
+    Optional<ChildNameHistoricalStats> getHistoricalStats(String name);
     Integer getHistoricalOccurences(String name, Year year);
 }

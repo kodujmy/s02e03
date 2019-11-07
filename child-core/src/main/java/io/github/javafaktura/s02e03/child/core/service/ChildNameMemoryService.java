@@ -8,9 +8,7 @@ import io.github.javafaktura.s02e03.child.core.provider.ChildNameHistoricalStats
 import io.github.javafaktura.s02e03.child.core.provider.ChildNameStatsProvider;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -68,16 +66,25 @@ public class ChildNameMemoryService implements ChildNameService{
     }
 
     @Override
-    public ChildNameHistoricalStats getHistoricalStats(String name) {
+    public Optional<ChildNameHistoricalStats> getHistoricalStats(String name) {
         return historicalStats.stream()
                 .filter(c -> c.getName().equals(name.toUpperCase()))
                 .findAny()
-                .orElse(new ChildNameHistoricalStats(name, Gender.fromName(name), Collections.emptyMap()));
+                .or(Optional::empty);
+    }
+
+    private Map<Year, Integer> getHistoricalStatsSummary() {
+        return historicalStats.stream()
+                .map(c -> c.getHistoricalStats())
+                .flatMap(m -> m.entrySet().stream())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1 + v2));
     }
 
     @Override
     public Integer getHistoricalOccurences(String name, Year year) {
-        return getHistoricalStats(name).getStatsForYear(year);
+        return getHistoricalStats(name)
+                .orElse(new ChildNameHistoricalStats(name, Gender.fromName(name), Collections.emptyMap()))
+                .getStatsForYear(year);
     }
 
     private List<ChildNameStats> filter(List<ChildNameStats> fullList, List<Predicate<ChildNameStats>> predicates) {

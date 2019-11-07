@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 @Controller
 public class ChildNameController {
 
@@ -20,14 +22,18 @@ public class ChildNameController {
                         Model model) {
         ChildNameStats randomChildNameStats = childNameConsumer.getRandom(new ParentPreferences(gender, popularity));
         model.addAttribute("child", randomChildNameStats);
-        model.addAttribute("choice", new ParentChoice(randomChildNameStats.getName()));
+        String name = randomChildNameStats.getName();
+        model.addAttribute("childHistory", childNameConsumer.historicalStats(name.toUpperCase())
+                .orElse(new ChildNameHistoricalStats(name, Gender.fromName(name), Collections.EMPTY_MAP)).toChartData());
+        model.addAttribute("choice", new ParentChoice(name));
         return "index";
     }
 
     @RequestMapping(value = "/{name}")
     public String name(@PathVariable String name, Model model) {
-        ChildNameStats childNameStats = childNameConsumer.lookFor(name.toUpperCase());
-        model.addAttribute("child", childNameStats);
+        model.addAttribute("child", childNameConsumer.lookFor(name.toUpperCase()));
+        model.addAttribute("childHistory", childNameConsumer.historicalStats(name.toUpperCase())
+                .orElse(new ChildNameHistoricalStats(name, Gender.fromName(name), Collections.EMPTY_MAP)).toChartData());
         model.addAttribute("choice", new ParentChoice(name.toUpperCase()));
         return "index";
     }
@@ -42,6 +48,6 @@ public class ChildNameController {
     @RequestMapping(value = "/choice", method = RequestMethod.POST)
     public String choose(@ModelAttribute ParentChoice choice) {
         childNameConsumer.add(choice.getName().toUpperCase());
-        return "redirect:/all";
+        return "redirect:/"+choice.getName().toUpperCase();
     }
 }

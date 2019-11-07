@@ -1,17 +1,16 @@
-package io.github.javafaktura.s02e03.child.core.model;
+package io.github.javafaktura.s02e03.child.client.model;
 
-import java.time.Year;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.*;
 
 public class ChildNameHistoricalStats {
     private String name;
     private Gender gender;
-    private Map<Year, Integer> historicalStats;
+    private Map<Integer, Integer> historicalStats;
 
 
-    public ChildNameHistoricalStats(String name, Gender gender, Map<Year, Integer> historicalStats) {
+    public ChildNameHistoricalStats(String name, Gender gender, Map<Integer, Integer> historicalStats) {
         this.name = name;
         this.gender = gender;
         this.historicalStats = historicalStats;
@@ -25,26 +24,24 @@ public class ChildNameHistoricalStats {
         return gender;
     }
 
-    public Map<Year, Integer> getHistoricalStats() {
+    public Map<Integer, Integer> getHistoricalStats() {
         return historicalStats;
     }
 
-    public int getStatsForYear(Year year) {
+    public int getStatsForYear(Integer year) {
         return historicalStats.getOrDefault(year, 0);
     }
 
+    @JsonIgnore
     public Integer getLastMostPopularYear() {
-        if(historicalStats.isEmpty()) {
-            return 0;
-        }
-        return getMaxEntry(historicalStats).getKey().getValue();
+        return getMaxEntry(historicalStats).getKey();
     }
 
-    private static Map.Entry<Year, Integer> getMaxEntry(Map<Year, Integer> map) {
-        Map.Entry<Year, Integer> maxEntry = null;
+    private static Map.Entry<Integer, Integer> getMaxEntry(Map<Integer, Integer> map) {
+        Map.Entry<Integer, Integer> maxEntry = null;
         Integer max = Collections.max(map.values());
 
-        for(Map.Entry<Year, Integer> entry : map.entrySet()) {
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
             Integer value = entry.getValue();
 
             if(null != value && max == value) {
@@ -68,5 +65,11 @@ public class ChildNameHistoricalStats {
     @Override
     public int hashCode() {
         return Objects.hash(name, gender, historicalStats);
+    }
+
+    public ChartData toChartData() {
+        Integer[] keyArray = historicalStats.keySet().toArray(new Integer[historicalStats.keySet().size()]);
+        Integer[] valueArray = historicalStats.values().toArray(new Integer[historicalStats.values().size()]);
+        return new ChartData(keyArray, valueArray);
     }
 }

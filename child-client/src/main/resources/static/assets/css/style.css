@@ -37,6 +37,11 @@
 .w3-childheader {
     background-color: #E36C0C!important;
 }
+.ct-chart {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 
