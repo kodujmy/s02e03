@@ -9,33 +9,7 @@
 </head>
 
 <body style="background-color: #FFE1B0">
-    <div class="row">
-        <div class="column">
-            <img class="img" src="../static/images/boy.png" width="50" th:src="@{images/boy.png}" />
-            <table class="w3-table-all w3-centered">
-                <tr class="w3-childheader">
-                    <th>Imię</th>
-                    <th>Wybór pierwszej połowy 2019</th>
-                </tr>
-                <tr class="w3-hover-orange w3-childbackground" th:each="name : ${boys}">
-                    <td><a th:href="@{'/' + ${name.name}}" th:text="${name.name}" /></td>
-                    <td th:text="${name.occurrences}"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="column">
-            <img class="img" src="../static/images/girl.png" width="50" th:src="@{images/girl.png}" />
-            <table class="w3-table-all w3-centered">
-                <tr class="w3-childheader">
-                    <th>Imię</th>
-                    <th>Wybór pierwszej połowy 2019</th>
-                </tr>
-                <tr class="w3-hover-orange w3-childbackground" th:each="name : ${girls}">
-                    <td><a th:href="@{'/' + ${name.name}}" th:text="${name.name}" /></td>
-                    <td th:text="${name.occurrences}"></td>
-                </tr>
-            </table>
-        </div>
-    </div>
+<!--    client-all/list-->
+
 </body>
 </html>

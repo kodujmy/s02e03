@@ -9,15 +9,8 @@
 </head>
 
 <body style="background-color: #FFE1B0">
-    <h1 class="header" th:text="${child.name}"></h1>
-    <img class="img" width="100px" th:src="${child.gender eq T(io.github.javafaktura.s02e03.child.core.model.Gender).MALE} ? @{images/boy.png} : @{images/girl.png}" />
-    <p class="description">To imię wybrało <b th:text="${child.occurrences}" /> rodzin (dane z pierwszej połowy 2019 roku)</p>
-    <img class="img" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
+<!--    client-index/name -->
 
-
-    <form class="w3-container" action="#" th:action="@{/choice}" th:object="${choice}" method="post">
-        <p>Imię <input type="text" class="w3-input" th:field="*{name}" /></p>
-        <p><input type="submit" class="w3-btn w3-blue" value="Wybieram!" /></p>
-    </form>
+<!--    client-index/form -->
 </body>
 </html>

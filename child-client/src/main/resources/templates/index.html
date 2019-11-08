@@ -13,58 +13,10 @@
 </head>
 
 <body style="background-color: #FFE1B0">
-    <h1 class="header" th:text="${child.name}"></h1>
-    <img class="img" width="100px" th:src="${child.gender eq T(io.github.javafaktura.s02e03.child.client.model.Gender).MALE} ? @{images/boy.png} : @{images/girl.png}" />
-    <p class="description">To imię wybrało <b th:text="${child.occurrences}" /> rodzin (dane z pierwszej połowy 2019 roku)</p>
-    <img class="img" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
+<!--    client-index/name -->
 
-    <h2 th:if="${childHistory.isEmpty()}" >Brak danych historycznych</h2>
-    <div th:unless="${childHistory.isEmpty()}">
-        <div class="ct-chart ct-perfect-fourth"></div>
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-            var data = {
-                // A labels array that can contain any sort of values
-                labels: [[${childHistory.labels}]],
-                // Our series array that contains series objects or in this case series data arrays
-                series: [
-                    [[${childHistory.values}]]
-                ]
-            };
+<!--    client-index/history -->
 
-            var options = {
-                height: 400,
-                axisX: {
-                    showGrid: true,
-                    showLabel: true
-                }
-            };
-
-            // Create a new line chart object where as first parameter we pass in a selector
-            // that is resolving to our chart container element. The Second parameter
-            // is the actual data object.
-            var chart = new Chartist.Line('.ct-chart', data, options);
-            chart.on('draw', function(data) {
-                if(data.type === 'line' || data.type === 'area') {
-                    data.element.animate({
-                        d: {
-                            begin: 2000 * data.index,
-                            dur: 2000,
-                            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                            to: data.path.clone().stringify(),
-                            easing: Chartist.Svg.Easing.easeOutQuint
-                        }
-                    });
-                }
-            })
-
-            /*]]>*/
-        </script>
-    </div>
-
-    <form class="w3-container" action="#" th:action="@{/choice}" th:object="${choice}" method="post">
-        <p>Imię <input type="text" class="w3-input" th:field="*{name}" /></p>
-        <p><input type="submit" class="w3-btn w3-blue" value="Wybieram!" /></p>
-    </form>
+<!--    client-index/form -->
 </body>
 </html>

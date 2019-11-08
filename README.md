@@ -4,7 +4,7 @@
 
 # How to read this repository?
 
-This branch contains all implemented features. 
+This branch contains just skeleton to implement
 
 Feel free to: 
 - clone this repository :smiley:
@@ -53,12 +53,12 @@ This module contains *no Spring dependencies*. Just pure Java + library to read 
 
 **Code: [child-webapp](child-webapp)**
 
-1. Draw a random name :white_check_mark:
-2. Present all names split by gender :white_check_mark:
-3. Draw a random name, taking parents preferences to gender and popularity :white_check_mark:
-4. Allow to choose name from existing data - should increase occurrence counter :white_check_mark:
-5. Allow to choose new name - should add new name with counter=1 :white_check_mark:
-6. Show details of certain name using path variable :white_check_mark:
+1. Draw a random name
+2. Present all names split by gender 
+3. Draw a random name, taking parents preferences to gender and popularity 
+4. Allow to choose name from existing data - should increase occurrence counter 
+5. Allow to choose new name - should add new name with counter=1 
+6. Show details of certain name using path variable 
 
 ---
 
@@ -66,12 +66,12 @@ This module contains *no Spring dependencies*. Just pure Java + library to read 
 
 **Module: [child-api](child-api)**
 
-1. Serve all name stats :white_check_mark:
-2. Serve random name stats :white_check_mark:
-3. Serve certain name stats :white_check_mark:
-4. Serve history of given name :white_check_mark:
-5. Allow to insert existing name - should increase counter :white_check_mark:
-6. Allow to insert new name - should add new name with counter=1 :white_check_mark:
+1. Serve all name stats 
+2. Serve random name stats 
+3. Serve certain name stats 
+4. Serve history of given name 
+5. Allow to insert existing name - should increase counter 
+6. Allow to insert new name - should add new name with counter=1 
 
 ---
 
@@ -79,11 +79,11 @@ This module contains *no Spring dependencies*. Just pure Java + library to read 
 
 **Module: [child-client](child-client)**
 
-1. Consume all name stats :white_check_mark:
-2. Consume random name stats :white_check_mark:
-3. Consume certain name stats :white_check_mark:
-4. Consume history of given name and plot a graph :white_check_mark:
-5. Allow to insert existing name using API - should increase counter :white_check_mark:
-6. Allow to insert new name using API - should add new name with counter=1 :white_check_mark:
+1. Consume all name stats 
+2. Consume random name stats 
+3. Consume certain name stats 
+4. Consume history of given name and plot a graph 
+5. Allow to insert existing name using API - should increase counter 
+6. Allow to insert new name using API - should add new name with counter=1 
 
 ---
