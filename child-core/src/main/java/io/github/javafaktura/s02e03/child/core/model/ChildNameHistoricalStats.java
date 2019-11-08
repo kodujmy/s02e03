@@ -8,13 +8,13 @@ import java.util.Objects;
 public class ChildNameHistoricalStats {
     private String name;
     private Gender gender;
-    private Map<Year, Integer> historicalStats;
+    private Map<Year, Integer> stats;
 
 
-    public ChildNameHistoricalStats(String name, Gender gender, Map<Year, Integer> historicalStats) {
+    public ChildNameHistoricalStats(String name, Gender gender, Map<Year, Integer> stats) {
         this.name = name;
         this.gender = gender;
-        this.historicalStats = historicalStats;
+        this.stats = stats;
     }
 
     public String getName() {
@@ -25,19 +25,19 @@ public class ChildNameHistoricalStats {
         return gender;
     }
 
-    public Map<Year, Integer> getHistoricalStats() {
-        return historicalStats;
+    public Map<Year, Integer> getStats() {
+        return stats;
     }
 
     public int getStatsForYear(Year year) {
-        return historicalStats.getOrDefault(year, 0);
+        return stats.getOrDefault(year, 0);
     }
 
     public Integer getLastMostPopularYear() {
-        if(historicalStats.isEmpty()) {
+        if(stats.isEmpty()) {
             return 0;
         }
-        return getMaxEntry(historicalStats).getKey().getValue();
+        return getMaxEntry(stats).getKey().getValue();
     }
 
     private static Map.Entry<Year, Integer> getMaxEntry(Map<Year, Integer> map) {
@@ -62,11 +62,11 @@ public class ChildNameHistoricalStats {
         ChildNameHistoricalStats that = (ChildNameHistoricalStats) o;
         return Objects.equals(name, that.name) &&
                 gender == that.gender &&
-                Objects.equals(historicalStats, that.historicalStats);
+                Objects.equals(stats, that.stats);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, gender, historicalStats);
+        return Objects.hash(name, gender, stats);
     }
 }

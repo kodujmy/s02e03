@@ -21,15 +21,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ChildNameConsumer {
-    private final Logger logger = LoggerFactory.getLogger(ChildNameConsumer.class);
+public class ChildNameClientService {
+    private final Logger logger = LoggerFactory.getLogger(ChildNameClientService.class);
 
     @Value("${child.name.service.host}")
     private String childNameServiceApiHost;
 
     private final RestTemplate restTemplate;
 
-    public ChildNameConsumer(RestTemplate restTemplate) {
+    public ChildNameClientService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

@@ -10,11 +10,10 @@ import java.util.Optional;
 
 public interface ChildNameService {
     List<ChildNameStats> getAll(ParentPreferences preferences);
-    int countAllOccurences();
+    int countAllOccurrences();
     ChildNameStats add(String name);
     ChildNameStats getRandom(ParentPreferences preferences);
     ChildNameStats lookFor(String name);
-
     Optional<ChildNameHistoricalStats> getHistoricalStats(String name);
     Integer getHistoricalOccurences(String name, Year year);
 }

@@ -3,8 +3,6 @@ package io.github.javafaktura.s02e03.child.core.service
 import io.github.javafaktura.s02e03.child.core.model.*
 import io.github.javafaktura.s02e03.child.core.provider.ChildNameHistoricalStatsProvider
 import io.github.javafaktura.s02e03.child.core.provider.ChildNameStatsProvider
-import io.github.javafaktura.s02e03.child.core.service.ChildNameMemoryService
-import io.github.javafaktura.s02e03.child.core.service.ChildNameService
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -30,7 +28,7 @@ class ChildNameServiceSpec extends Specification {
 
     def "Counting all occurrences should return 8788"() {
         expect:
-        8788 == childNameService.countAllOccurences()
+        8788 == childNameService.countAllOccurrences()
     }
 
     @Unroll

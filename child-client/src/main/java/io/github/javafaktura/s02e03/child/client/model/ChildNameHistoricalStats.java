@@ -7,13 +7,13 @@ import java.util.*;
 public class ChildNameHistoricalStats {
     private String name;
     private Gender gender;
-    private Map<Integer, Integer> historicalStats;
+    private Map<Integer, Integer> stats;
 
 
-    public ChildNameHistoricalStats(String name, Gender gender, Map<Integer, Integer> historicalStats) {
+    public ChildNameHistoricalStats(String name, Gender gender, Map<Integer, Integer> stats) {
         this.name = name;
         this.gender = gender;
-        this.historicalStats = historicalStats;
+        this.stats = stats;
     }
 
     public String getName() {
@@ -24,17 +24,17 @@ public class ChildNameHistoricalStats {
         return gender;
     }
 
-    public Map<Integer, Integer> getHistoricalStats() {
-        return historicalStats;
+    public Map<Integer, Integer> getStats() {
+        return stats;
     }
 
     public int getStatsForYear(Integer year) {
-        return historicalStats.getOrDefault(year, 0);
+        return stats.getOrDefault(year, 0);
     }
 
     @JsonIgnore
     public Integer getLastMostPopularYear() {
-        return getMaxEntry(historicalStats).getKey();
+        return getMaxEntry(stats).getKey();
     }
 
     private static Map.Entry<Integer, Integer> getMaxEntry(Map<Integer, Integer> map) {
@@ -59,17 +59,17 @@ public class ChildNameHistoricalStats {
         ChildNameHistoricalStats that = (ChildNameHistoricalStats) o;
         return Objects.equals(name, that.name) &&
                 gender == that.gender &&
-                Objects.equals(historicalStats, that.historicalStats);
+                Objects.equals(stats, that.stats);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, gender, historicalStats);
+        return Objects.hash(name, gender, stats);
     }
 
     public ChartData toChartData() {
-        Integer[] keyArray = historicalStats.keySet().toArray(new Integer[historicalStats.keySet().size()]);
-        Integer[] valueArray = historicalStats.values().toArray(new Integer[historicalStats.values().size()]);
+        Integer[] keyArray = stats.keySet().toArray(new Integer[stats.keySet().size()]);
+        Integer[] valueArray = stats.values().toArray(new Integer[stats.values().size()]);
         return new ChartData(keyArray, valueArray);
     }
 }

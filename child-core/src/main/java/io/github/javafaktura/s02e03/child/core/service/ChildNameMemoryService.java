@@ -31,7 +31,7 @@ public class ChildNameMemoryService implements ChildNameService{
         return filter(currentYearStats, preferences.asPredicates());
     }
 
-    public int countAllOccurences() {
+    public int countAllOccurrences() {
         return currentYearStats.stream()
                 .map(n -> Integer.valueOf(n.getOccurrences()))
                 .reduce(0, Integer::sum);
@@ -75,7 +75,7 @@ public class ChildNameMemoryService implements ChildNameService{
 
     private Map<Year, Integer> getHistoricalStatsSummary() {
         return historicalStats.stream()
-                .map(c -> c.getHistoricalStats())
+                .map(c -> c.getStats())
                 .flatMap(m -> m.entrySet().stream())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1 + v2));
     }

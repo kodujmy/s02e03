@@ -13,6 +13,6 @@ class ChildNameHistoricalStatsCsvProviderSpec extends Specification {
         ChildNameHistoricalStatsCsvProvider csvProvider = new ChildNameHistoricalStatsCsvProvider(HISTORICAL_STATS_FILENAME);
         List<ChildNameHistoricalStats> historicalChildStats = csvProvider.load()
         expect:
-        39 == historicalChildStats.get(0).historicalStats.get(Year.of(2016))
+        39 == historicalChildStats.get(0).stats.get(Year.of(2016))
     }
 }
