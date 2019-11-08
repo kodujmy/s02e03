@@ -42,7 +42,9 @@ This module contains *no Spring dependencies*. Just pure Java + library to read 
 > What is best approach to test Spring projects?
 
 > Test them like there was no Spring at all. 
-> **Marcin Grzejszczak - Principal Software Engineer at Pivotal**
+**Marcin Grzejszczak - Principal Software Engineer at Pivotal**
+
+:heart:
 
 ---
 
