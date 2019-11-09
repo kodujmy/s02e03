@@ -18,7 +18,7 @@ Feel free to:
 ```
 Once Java Programmer was expecting to have baby, actually 2 babies.
 He wrote a program to choose names for his newborns.
-Unexpectedly triplets were born and the got the names:
+Unexpectedly triplets were born and they got the names:
 Adam, Frank and... ArrayIndexOutOfBoundsException
 ```
 
